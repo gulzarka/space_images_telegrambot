@@ -18,3 +18,7 @@ def fetch_nasa_images():
         file_extension = get_file_extension(url)
         filename = f'{image_number}nasa_apod.{file_extension}'
         download_images(url,path,filename)
+
+fetch_nasa_images()
+
+
