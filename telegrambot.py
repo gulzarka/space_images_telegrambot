@@ -16,11 +16,12 @@ def post_selected_image(bot, channel, image, directory='images'):
 
 def post_shuffled_images(bot, channel, directory='images', timer=14400):
     files = list(os.walk(directory))[0][2]
-    for file in files:
-        with open(os.path.join(directory, file), 'rb') as image:
-            bot.send_photo(chat_id=channel, photo=image)
-            random.shuffle(files)
-            time.sleep(timer)
+    while True:
+        for file in files:
+            with open(os.path.join(directory, file), 'rb') as image:
+                bot.send_photo(chat_id=channel, photo=image)
+                random.shuffle(files)
+                time.sleep(timer)
 
             
 
