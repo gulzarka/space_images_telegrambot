@@ -19,8 +19,8 @@ You need to get a telegram bot API token and telegram channel name, save them in
 
 ## How to use
 For downloading images use:
-- `fetch_nasa_apod.py` - downloads space images of a day from NASA.
-- `fetch_nasa_epic.py` - downloads images from NASA EPIC API.  
+- `fetch_nasa_apod_images.py` - downloads space images of a day from NASA.
+- `fetch_nasa_epic_images.py` - downloads images from NASA EPIC API.  
 - `fetch_spacex_images.py` - downloads photos from a spacex rocket launch. By default downloads photos from the latest launch, but you can put desired  launch id using command `'-id' or '--launch id'`  
  Example: `$space_images python3 fetch_spacex_images.py -id 50291453997_aa715950e7`
  
