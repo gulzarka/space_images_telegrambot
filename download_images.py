@@ -12,8 +12,3 @@ def download_images(url, path, filename, params={}):
         file.write(response.content)
 
 
-def get_file_extension(url):
-    parsed_url = urlsplit(url)
-    file_extension = os.path.splitext(parsed_url.path)[-1]
-    filename = unquote(os.path.split(parsed_url.path)[-1])
-    return file_extension

@@ -10,7 +10,7 @@ def fetch_spacex_images(launch_id):
     response_content = response.json()
     image_links = response_content['links']['flickr']['original']
     for number, image_link in enumerate(image_links):
-        path = 'spacex_images/'
+        path = 'images'
         filename = f'{number}spacex.jpg'
         download_images(image_link, path, filename)
    
@@ -23,7 +23,7 @@ def fetch_spacex_last_launch(launch_id):
     image_links = response_content['links']['flickr']['original']
     if not image_links == []:
         for number, image_link in image_links:
-            path = 'images/'
+            path = 'images'
             filename = f'{number}spacex.jpg'
             download_images(image_link, path, filename)
     else:
