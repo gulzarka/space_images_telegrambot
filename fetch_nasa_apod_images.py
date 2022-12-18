@@ -5,7 +5,6 @@ from urllib.parse import urlsplit, unquote
 import argparse
 from download_images import download_images
 
-
 def get_file_extension(url):
     parsed_url = urlsplit(url)
     file_extension = os.path.splitext(parsed_url.path)[-1]
@@ -26,6 +25,7 @@ def fetch_nasa_images():
 def main():
     fetch_nasa_images()
         
+
 if __name__ == '__main__':
     main()
 
