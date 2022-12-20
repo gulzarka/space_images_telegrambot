@@ -19,7 +19,7 @@ def post_shuffled_images(bot, channel, directory='images', timer=14400):
     files = list(os.walk(directory))[0][2]
     while True:
         for file in files:
-            save_image(directory, file)
+            send_image(directory, file)
             random.shuffle(files)
             time.sleep(timer)
 
@@ -60,10 +60,16 @@ def main():
     folder = args.f
     image = args.i
     if image:
-        post_selected_image(bot, channel, image, folder)
+        try:
+            post_selected_image(bot, channel, image, folder)
+            except exception telegram.error.NetworkError:
+                print('Telegram network error has occured')
     else:
-        post_shuffled_images(bot, channel, folder, timer)
-            
-            
+        try:
+            post_shuffled_images(bot, channel, folder, timer)
+            except exception telegram.error.NetworkError:
+                print('Telegram network error has occured')
+
+
 if __name__ == '__main__':
     main()
