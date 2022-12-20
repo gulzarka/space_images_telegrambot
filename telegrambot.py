@@ -6,26 +6,24 @@ import argparse
 import telegram
 from dotenv import load_dotenv
 
-def post_selected_image(bot, channel, image, directory='images'):
-    with open(os.path.join(directory, image), 'rb') as selected_image:
-        bot.send_photo(
-            chat_id=channel,
-            photo=selected_image
-        )
+def send_image(directory, file):
+    with open(os.path.join(directory, file), 'rb') as image:
+         bot.send_photo(chat_id=channel, photo=image)
 
+
+def post_selected_image(bot, channel, file, directory='images'):
+    save_image(directory, file)
+    
 
 def post_shuffled_images(bot, channel, directory='images', timer=14400):
     files = list(os.walk(directory))[0][2]
     while True:
         for file in files:
-            with open(os.path.join(directory, file), 'rb') as image:
-                bot.send_photo(chat_id=channel, photo=image)
-                random.shuffle(files)
-                time.sleep(timer)
+            save_image(directory, file)
+            random.shuffle(files)
+            time.sleep(timer)
 
-            
-
-
+         
 def create_arguments():
     parser = argparse.ArgumentParser(description='Post images to telegram channel')
     parser.add_argument(
