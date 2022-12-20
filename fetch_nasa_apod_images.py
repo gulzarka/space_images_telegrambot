@@ -29,7 +29,7 @@ def main():
     try:
         fetch_nasa_images()
     except requests.exceptions.HTTPError:
-        print('Connection error is occured....')    
+        print('Http error is occured....')    
         
 
 if __name__ == '__main__':
