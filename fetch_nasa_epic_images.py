@@ -10,6 +10,7 @@ def get_epic_images():
     response = requests.get("https://api.nasa.gov/EPIC/api/natural/images",
                             params={"api_key": "DEMO_KEY"})
     response_content = response.json()
+    response.raise_for_status()
     for content in response_content:
         image_date = content['date'].split()[0].replace('-', '/')
         image_name = content['image']
