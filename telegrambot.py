@@ -66,7 +66,10 @@ def main():
         except telegram.error.TelegramError:
             print('Telegram network error has occured')
     else:
-        post_shuffled_images(bot, channel, folder, timer)
+        try:
+            post_shuffled_images(bot, channel, folder, timer)
+        except telegram.error.TelegramError:
+            print('Telegram network error has occured')
 
 
 if __name__ == '__main__':
