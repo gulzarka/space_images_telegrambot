@@ -6,22 +6,23 @@ import argparse
 import telegram
 from dotenv import load_dotenv
 
-def send_image(directory, file):
+def send_image(bot, channel, directory, file):
     with open(os.path.join(directory, file), 'rb') as image:
          bot.send_photo(chat_id=channel, photo=image)
 
 
 def post_selected_image(bot, channel, file, directory='images'):
-    save_image(directory, file)
+    send_image(bot, channel, directory, file)
     
 
 def post_shuffled_images(bot, channel, directory='images', timer=14400):
-    files = list(os.walk(directory))[0][2]
     while True:
+        files = list(os.walk(directory))[0][2]
+        random.shuffle(files)
         for file in files:
-            send_image(directory, file)
-            random.shuffle(files)
+            send_image(bot,channel,directory,file)
             time.sleep(timer)
+       
 
          
 def create_arguments():
@@ -62,10 +63,10 @@ def main():
     if image:
         try:
             post_selected_image(bot, channel, image, folder)
-            except exception telegram.error.NetworkError:
-                print('Telegram network error has occured')
+        except telegram.error.TelegramError:
+            print('Telegram network error has occured')
     else:
-            post_shuffled_images(bot, channel, folder, timer)
+        post_shuffled_images(bot, channel, folder, timer)
 
 
 if __name__ == '__main__':
