@@ -1,7 +1,7 @@
 import requests
 from download_images import download_images
 import argparse
-import random
+
 
 
 def fetch_spacex_images(launch_id):
