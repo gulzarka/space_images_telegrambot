@@ -11,20 +11,17 @@ def send_image(bot, channel, directory, file):
          bot.send_photo(chat_id=channel, photo=image)
 
 
-def post_selected_image(bot, channel, file):
-    directory = 'images'
+def post_selected_image(bot, channel, file, directory='images'):
     send_image(bot, channel, directory, file)
     
 
-def post_shuffled_images(bot, channel, directory, timer=14400):
+def post_shuffled_images(bot, channel, directory='images', timer=14400):
     while True:
         files = list(os.walk(directory))[0][2]
         random.shuffle(files)
         for file in files:
             send_image(bot,channel,directory,file)
-            time.sleep(int(timer))
-            time.sleep(15)
-            
+            time.sleep(timer)
        
 
          
@@ -65,16 +62,14 @@ def main():
     image = args.i
     if image:
         try:
-            post_selected_image(bot, channel, image)
+            post_selected_image(bot, channel, image, folder)
         except telegram.error.TelegramError:
             print('Telegram network error has occured')
     else:
         try:
-            post_shuffled_images(bot, channel, folder, timer)     
+            post_shuffled_images(bot, channel, folder, timer)
         except telegram.error.TelegramError:
-            print('connection error occured')
-            
-   
+            print('Telegram network error has occured')
 
 
 if __name__ == '__main__':

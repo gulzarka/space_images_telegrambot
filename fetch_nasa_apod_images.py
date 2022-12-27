@@ -18,29 +18,20 @@ def fetch_nasa_images():
     for image_number, image_link in enumerate(image_links):
         media_type = image_link['media_type']
         if media_type=='image':
-            url = image_link['url']   
+            url = image_link['url']
         path = "images"
         file_extension = get_file_extension(url)
         filename = f'{image_number}nasa_apod{file_extension}'
         download_images(url,path,filename)
 
 
-def create_argument():
-    parser = argparse.ArgumentParser(description='argument for choosing number of images to download')
-    parser.add_argument('-n', '--number', default=3, required=False,
-                        help='use -n or --number and put needed number for downloading images')
-    argument = parser.parse_args()
-    return argument.number                    
-
-
 def main():
-    count = create_argument()
     try:
         fetch_nasa_images()
     except requests.exceptions.HTTPError:
         print('Http error is occured....')    
         
 
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
 
