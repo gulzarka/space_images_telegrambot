@@ -3,6 +3,7 @@ import os
 import os.path
 from urllib.parse import urlsplit, unquote
 import argparse
+from dotenv import load_dotenv
 from download_images import download_images
 
 def get_file_extension(url):
@@ -11,8 +12,8 @@ def get_file_extension(url):
     return file_extension
 
 
-def fetch_nasa_images(count):
-    response = requests.get("https://api.nasa.gov/planetary/apod", params={"api_key": "DEMO_KEY", "count": count })
+def fetch_nasa_images(api_key, count):
+    response = requests.get("https://api.nasa.gov/planetary/apod", params={"api_key": api_key, "count": count })
     response.raise_for_status()
     image_links = response.json()
     for image_number, image_link in enumerate(image_links):
@@ -27,17 +28,23 @@ def fetch_nasa_images(count):
 
 
 def create_argument():
+    load_dotenv('tokens.env')
+    api_key = os.environ['API_KEY']
     parser = argparse.ArgumentParser(description='argument for choosing number of images to download')
-    parser.add_argument('-n', '--number', default=1, required=False,
+    parser.add_argument('-t', '--token', default=api_key, required=False, 
+                        help='use -t or --token and put your token; default')
+    parser.add_argument('-n', '--number', default=1, required=False, type=int,
                         help='use -n or --number and put needed number for downloading images')
     argument = parser.parse_args()
-    return argument.number                 
-
+    return argument                
+ 
 
 def main():
-    count = create_argument() 
+    args = create_argument() 
+    count = args.number
+    api_key = args.token
     try:
-       fetch_nasa_images(count)
+       fetch_nasa_images(api_key, count)
     except requests.exceptions.HTTPError:
         print('Http error is occured....')    
         
