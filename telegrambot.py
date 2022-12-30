@@ -25,7 +25,7 @@ def post_shuffled_images(bot, channel, directory, timer=14400):
             for file in files:
                 try:
                     send_image(bot,channel,directory,file)
-                    time.sleep(int(timer))
+                    time.sleep(timer)
                     time.sleep(3)
                 except telegram.error.TelegramError:
                     print('connection error occured')       
@@ -37,6 +37,7 @@ def create_arguments():
         '-t',
         '-timer',
         default=14400,
+        type=int,
         required=False,
         help='Timer in seconds. Default: 14400'
     )
