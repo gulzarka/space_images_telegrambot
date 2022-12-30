@@ -19,10 +19,26 @@ You need to get a telegram bot API token and telegram channel name, save them in
 
 ## How to use
 For downloading images use:
-- `fetch_nasa_apod_images.py` - downloads space images of a day from NASA.
-- `fetch_nasa_epic_images.py` - downloads images from NASA EPIC API.  
+- `fetch_nasa_apod_images.py` - downloads space images of a day from NASA. You need to get access token on https://api.nasa.gov , use -t or --token commands and put your token in the command line.  
+Example: 
+```
+$ python3 fetch_nasa_apod_images.py -t yourtoken
+```
+- `fetch_nasa_epic_images.py` - downloads images from NASA EPIC API.  You need to get access token on [api.nasa.gov](https://api.nasa.gov/), use -t or --token commands and put your token in the command line. 
+Example: 
+```
+$ python3 fetch_nasa_epic_images.py -t yourtoken
+``` 
+For downlowding desired number of images just put number after command -n or --number.   
+Example: 
+```
+$ python3 fetch_nasa_epic_images.py -n 5
+``` 
 - `fetch_spacex_images.py` - downloads photos from a spacex rocket launch. By default downloads photos from the latest launch, but you can put desired  launch id using command `'-id' or '--launch id'`  
- Example: `$space_images python3 fetch_spacex_images.py -id 50291453997_aa715950e7`
+ Example: 
+ ```
+ $ python3 fetch_spacex_images.py -id 50291453997_aa715950e7
+ ```
  
 For running telegram bot use:  
 
@@ -32,7 +48,7 @@ For running telegram bot use:
 - `-f` - for choosing image folder, default is 'images'   
 - `-i` - for posting a specific image from images folder   
 ```
-$space_images python3 telegrambot.py -t 60
+$ python3 telegrambot.py -t 60
 ```
 
 
