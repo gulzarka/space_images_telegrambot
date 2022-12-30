@@ -1,7 +1,7 @@
 import requests
 from download_images import download_images
 import argparse
-import random
+
 
 
 def fetch_spacex_images(launch_id):
@@ -20,7 +20,7 @@ def create_arguments():
     parser.add_argument('-id', '--launch_id', default = 'latest', required=False, 
                         help='Put launch id, or default name "latest" will be used')
     argument = parser.parse_args()
-    return argument.launch_id 
+    return argument.launch_id
           
         
 def main():

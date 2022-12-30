@@ -1,9 +1,4 @@
 import requests
-import os
-import os.path
-from urllib.parse import urlsplit, unquote
-import datetime
-import argparse
 from download_images import download_images
 
 def get_epic_images():
@@ -22,7 +17,12 @@ def get_epic_images():
 
 
 def main():
-    get_epic_images()
+    try:
+        get_epic_images()
+    except requests.exceptions.HTTPError:
+        print('Http error is occured....')       
+
+    
         
 if __name__ == '__main__':
     main()
