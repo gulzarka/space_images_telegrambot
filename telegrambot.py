@@ -19,6 +19,7 @@ def post_selected_image(bot, channel, file):
 
 
 def post_shuffled_images(bot, channel, directory, timer):
+    cnt_retry_send=0
     while True:
             files = list(os.walk(directory))[0][2]
             random.shuffle(files)
@@ -26,9 +27,12 @@ def post_shuffled_images(bot, channel, directory, timer):
                 try:
                     send_image(bot,channel,directory,file)
                     time.sleep(timer)
+                    cnt_retry_send = 0
                 except telegram.error.TelegramError:
                     print('connection error occured')
-                    time.sleep(600)       
+                    time.sleep(20+cnt_retry_send*60)
+                    cnt_retry_send += 1       
+
             
         
 def create_arguments():
