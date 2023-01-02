@@ -23,7 +23,7 @@ def get_epic_images(access_token):
 
 def create_argument():
     load_dotenv("tokens.env")
-    access_token = os.environ["API_KEY"]
+    access_token = os.environ["NASA_API_KEY"]
     parser = argparse.ArgumentParser(description="Downloads NASA APOD images")
     parser.add_argument(
         "-t",
