@@ -14,7 +14,8 @@ Then use `pip` (or `pip3`, if there is a conflict with Python2) to install depen
 ```
 pip install -r requirements.txt
 ```
-You need to get a telegram bot API token and telegram channel name, save them in the file `tokens.env` with variable `TELEGRAMBOT_TOKEN`, and telegram channel name which (starts with @) in the variable `TELEGRAM_CHANNEL`.
+You need to get a telegram bot API token and telegram channel name, save them in the file `tokens.env` with variable `TELEGRAMBOT_TOKEN`, and telegram channel name which (starts with @) in the variable `TELEGRAM_CHANNEL`.  
+This script downloads images from NASA resources, so you need to get your access token on [api.nasa.gov](https://api.nasa.gov/), and save the token in `tokens.env` file, with variable `NASA_API_KEY`.
 
 
 ## How to use
