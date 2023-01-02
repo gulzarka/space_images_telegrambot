@@ -1,7 +1,5 @@
 import os
-from os import path
 import requests
-from urllib.parse import urlsplit, unquote
 
 
 def download_images(url, path, filename, params=None):

@@ -1,7 +1,6 @@
 import requests
 import os
-import os.path
-from urllib.parse import urlsplit, unquote
+from urllib.parse import urlsplit
 import argparse
 from dotenv import load_dotenv
 from download_images import download_images
@@ -30,10 +29,9 @@ def fetch_nasa_images(access_token, count):
 
 def create_argument():
     load_dotenv("tokens.env")
-    access_token = os.environ["API_KEY"]
     parser = argparse.ArgumentParser(description="Downloads NASA APOD images")
     parser.add_argument(
-        "-t", "--token", default=access_token, required=False, help="use -t or --token and put your token; default"
+        "-t", "--token", default=os.environ["NASA_API_KEY"], required=False, help="use -t or --token and put your token; default"
     )
     parser.add_argument(
         "-n",

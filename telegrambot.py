@@ -28,12 +28,11 @@ def post_shuffled_images(bot, channel, directory, timer):
             try:
                 send_image(bot, channel, directory, file)
                 time.sleep(timer)
-                cnt_retry_send = 0
             except telegram.error.TelegramError:
-                print("connection error occured")
+                print("connection error occurred")
                 time.sleep(20 + cnt_retry_send * 60)
                 cnt_retry_send += 1
-
+                       
 
 def create_arguments():
     parser = argparse.ArgumentParser(description="Post images to telegram channel")
