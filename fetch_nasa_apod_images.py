@@ -31,7 +31,7 @@ def create_argument():
     load_dotenv("tokens.env")
     parser = argparse.ArgumentParser(description="Downloads NASA APOD images")
     parser.add_argument(
-        "-t", "--token", default=os.environ["NASA_API_KEY"], required=False, help="use -t or --token and put your token; default"
+        "-t", "--token", default=os.environ["NASA_API_KEY"], required=False, help="use -t or --token and put your token"
     )
     parser.add_argument(
         "-n",
@@ -52,7 +52,7 @@ def main():
     try:
         fetch_nasa_images(access_token, count)
     except requests.exceptions.HTTPError:
-        print("Http error is occured....")
+        print("Http error is occurred....")
 
 
 if __name__ == "__main__":
