@@ -40,7 +40,7 @@ def main():
     try:
         get_epic_images(access_token)
     except requests.exceptions.HTTPError:
-        print("Http error is occured....")
+        print("Http error has occurred....")
 
 
 if __name__ == "__main__":
